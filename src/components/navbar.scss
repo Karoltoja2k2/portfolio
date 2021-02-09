@@ -1,0 +1,29 @@
+.nav {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 30px;
+  width: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 10;
+
+  .nav__list {
+    height: auto;
+    width: 100%;
+    background-color: burlywood;
+
+    p {
+      width: 50px;
+      height: 30px;
+      margin: 10px 0;
+    }
+
+    .active {
+      color: coral;
+    }
+  }
+}

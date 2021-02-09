@@ -1,0 +1,15 @@
+.projects {
+  height: 1200px;
+  border-bottom: 5px black solid;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .container {
+    width: 100px;
+    height: 100px;
+
+    background-color: coral;
+  }
+}

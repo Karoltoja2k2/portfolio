@@ -1,0 +1,39 @@
+.hero {
+  height: 100vh;
+  border-bottom: 5px black solid;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .hero__content {
+    width: 60vw;
+    padding: 5px;
+    border: 2px rgb(143, 143, 143) solid;
+    background-color: rgba(0, 0, 0, 0.24);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    p {
+      margin: 0px;
+    }
+
+    .content__header {
+      // background-color: red;
+      font-size: 24px;
+      color: rgb(255, 255, 255);
+    }
+
+    .content__lower {
+      background-color: black;
+      // color: rgb(51, 255, 0);
+      color: rgb(94, 255, 0);
+      font-size: 24px;
+    }
+
+    .content__icons {
+      // background-color: saddlebrown;
+    }
+  }
+}

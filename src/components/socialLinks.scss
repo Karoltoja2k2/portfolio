@@ -1,0 +1,11 @@
+.social {
+  display: flex;
+  flex-direction: row;
+
+  .social__item {
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    margin-right: 10px;
+  }
+}
