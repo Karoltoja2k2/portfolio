@@ -1,0 +1,15 @@
+@import "settings/variables.scss";
+@import "settings/base.scss";
+
+@import "./components/bgCanvas.scss";
+@import "./components/navbar.scss";
+@import "./components/socialLinks.scss";
+@import "./components/writer.scss";
+
+@import "./components/common/sectionTitle.scss";
+
+@import "./sections/base.scss";
+@import "./sections/contact.scss";
+@import "./sections/hero.scss";
+@import "./sections/projects.scss";
+@import "./sections/skills.scss";

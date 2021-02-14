@@ -1,15 +1,15 @@
 import React, { useRef, useEffect } from "react";
-import "./bgCanvas.scss";
 import * as THREE from "three";
 import { Canvas, useThree, useFrame } from "react-three-fiber";
 
 import { OrbitControls, Stars } from "@react-three/drei";
 
 import Skybox from "./Skybox";
+import CameraControls from "../three/camera";
+import { Vector3 } from "three";
 
-function BgCanvas() {
+function BgCanvas(props) {
   const ref = useRef(null);
-
 
   useEffect(() => {
     const timeout2 = setTimeout(() => {
@@ -21,24 +21,28 @@ function BgCanvas() {
   useEffect(() => {}, []);
   return (
     <div className="bgCanvas">
-      <Canvas onPointerMove={(e) => console.log(e)} style={{backgroundColor: "black"}}>
+      <Canvas onPointerMove={(e) => console.log(e)} style={{ backgroundColor: "black" }}>
         {/* <Skybox /> */}
-        <Stars radius={400} count={2500} depth={10}/>
-
-        <OrbitControls
-          maxDistance={225000}
-          autoRotate={true}
-          autoRotateSpeed={0.5}
-          enableDamping={false}
-          mouseButtons={{
-            RIGHT: THREE.MOUSE.PAN,
-            MIDDLE: THREE.MOUSE.ROTATE,
-          }}
-          ref={ref}
-        />
+        <Stars radius={400} count={1000} depth={10} factor={8} />
+        <CameraAnimation scrollPosition={props.scrollPosition} />
       </Canvas>
     </div>
   );
 }
 
-export default React.memo(BgCanvas);
+let sin = 0;
+
+function CameraAnimation({ scrollPosition }) {
+  useFrame(({ clock, camera }) => {
+    let rotX = camera.rotation.x;
+    let fract = scrollPosition * 0.001;
+    let diff = fract + rotX;
+    diff = (-1 * (diff * 0.8)) / 30;
+    camera.position.z += 0.1 * Math.sin(sin);
+    sin += Math.PI / 1080;
+    camera.rotation.x += diff;
+  });
+  return null;
+}
+
+export default BgCanvas;

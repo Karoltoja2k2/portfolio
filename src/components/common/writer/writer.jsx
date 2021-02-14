@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
+import WriterBase from "./writerBase";
 
-export default function Writer({words}) {
-  const [blink, setBlink] = useState(true);
+export default function Writer({ words }) {
   const [state, setState] = useState({
     wordIndex: 0,
     subIndex: 0,
@@ -17,7 +17,7 @@ export default function Writer({words}) {
       reverse = false;
       let newWordIndex = wordIndex + 1;
       wordIndex = newWordIndex >= words.length ? 0 : newWordIndex;
-      delay = 500
+      delay = 500;
     } else if (subIndex == words[wordIndex].length) {
       reverse = true;
       delay = 1000;
@@ -25,21 +25,10 @@ export default function Writer({words}) {
 
     let modifier = reverse != state.reverse ? 0 : reverse ? -1 : 1;
     const timeout2 = setTimeout(() => {
-      setState({ wordIndex: wordIndex, subIndex: state.subIndex + modifier, reverse: reverse });
+      setState({ wordIndex: wordIndex, subIndex: state.subIndex + modifier, reverse: reverse, run: state.run });
     }, delay);
     return () => clearTimeout(timeout2);
   }, [state]);
 
-  useEffect(() => {
-    const timeout2 = setTimeout(() => {
-      setBlink((prev) => !prev);
-    }, 500);
-    return () => clearTimeout(timeout2);
-  }, [blink]);
-
-  return (
-    <>
-      <p>{`>    ${words[state.wordIndex].substring(0, state.subIndex)}${blink ? "|" : " "}`}</p>
-    </>
-  );
+  return <WriterBase word={words[state.wordIndex]} subIndex={state.subIndex} />;
 }

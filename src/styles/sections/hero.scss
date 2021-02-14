@@ -6,10 +6,10 @@
   justify-content: center;
   align-items: center;
 
+  font-size: 28px;
   .hero__content {
     width: 60vw;
     padding: 5px;
-    border: 2px rgb(143, 143, 143) solid;
     background-color: rgba(0, 0, 0, 0.24);
 
     display: flex;
@@ -20,20 +20,36 @@
     }
 
     .content__header {
-      // background-color: red;
-      font-size: 24px;
       color: rgb(255, 255, 255);
+
+      a {
+        color: white;
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: rgb(109, 46, 255) !important;
+      }
+
+      .header__writer {
+        color: $theme-main-color;
+      }
     }
 
     .content__lower {
       background-color: black;
-      // color: rgb(51, 255, 0);
-      color: rgb(94, 255, 0);
-      font-size: 24px;
+      color: $theme-main-color;
+      font-size: 26px;
     }
 
     .content__icons {
       // background-color: saddlebrown;
     }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .hero {
+    font-size: 20px;
   }
 }

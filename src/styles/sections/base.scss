@@ -1,0 +1,23 @@
+section {
+  position: relative;
+  z-index: inherit;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sections {
+  z-index: 5;
+}
+
+.section__container--thin {
+  max-width: 1000px;
+  width: 80%;
+}
+
+@media screen and (max-width: 768px) {
+  .section__container--thin {
+    width: 90%;
+  }
+}

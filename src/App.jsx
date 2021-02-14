@@ -1,39 +1,65 @@
 import React, { useRef, useState, useEffect } from "react";
-import logo from "./logo.svg";
-import "./App.scss";
+import "./styles/App.scss";
+
+import { Hero, Skills, Projects, Contact } from "./sections";
+import { getElementDimensions } from "./helpers";
 import Navbar from "./components/navbar";
-import Hero from "./sections/hero";
-import Skills from "./sections/skills";
-import Projects from "./sections/projects";
 import BgCanvas from "./components/bgCanvas";
+import Sections from "./sections/sections";
+import { data } from "./data";
+
+let lang = data.find((x) => x.language === "PL");
 
 function App() {
-  let hero = useRef(null);
-  let skills = useRef(null);
-  let projects = useRef(null);
-
   const [state, setState] = useState({
+    scrollPosition: 0,
     sections: [
-      { name: "Hero", component: <Hero />, ref: hero, active: false },
-      { name: "Skills", component: <Skills />, ref: skills, active: false },
-      { name: "Projects", component: <Projects />, ref: projects, active: false },
+      { id: 0, name: lang.sections.hero, component: <Hero />, ref: useRef(null), active: false, icon: "fas fa-home" },
+      {
+        id: 1,
+        name: lang.sections.skills,
+        component: <Skills />,
+        ref: useRef(null),
+        active: false,
+        icon: "fas fa-project-diagram",
+      },
+      {
+        id: 2,
+        name: lang.sections.projects,
+        component: <Projects />,
+        ref: useRef(null),
+        active: false,
+        icon: "fas fa-laptop-code",
+      },
+      {
+        id: 3,
+        name: lang.sections.contact,
+        component: <Contact />,
+        ref: useRef(null),
+        active: false,
+        icon: "far fa-envelope",
+      },
     ],
   });
 
-  function HandleScroll() {
+  function HandleScroll(e) {
     const scrollPosition = window.scrollY;
     const windowHeight = window.innerHeight;
+    let sections = state.sections.map((x) => {
+      let ele = x.ref.current;
+      if (ele) {
+        const { height, offsetBottom, offsetTop } = getElementDimensions(ele);
+        let isSelected =
+          scrollPosition + windowHeight / 2 >= offsetTop && scrollPosition + windowHeight / 2 < offsetBottom;
+
+        return isSelected != x.active ? { ...x, active: isSelected } : x;
+      }
+    });
+
     setState({
       ...state,
-      sections: state.sections.map((x) => {
-        let ele = x.ref.current;
-        if (ele) {
-          const { height, offsetBottom, offsetTop } = getDimensions(ele);
-          let isSelected =
-            scrollPosition + windowHeight / 2 >= offsetTop && scrollPosition + windowHeight / 2 < offsetBottom;
-          return isSelected != x.active ? { ...x, active: isSelected } : x;
-        }
-      }),
+      scrollPosition: scrollPosition,
+      sections: [...sections],
     });
   }
 
@@ -43,30 +69,12 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className="app" onMouseMove={(e) => {}}>
       <Navbar sections={state.sections} />
-      <BgCanvas />
-      <div className="sections">
-        {state.sections.map((section) => (
-          <section id={section.name} ref={section.ref}>
-            {section.component}
-          </section>
-        ))}
-      </div>
+      <BgCanvas scrollPosition={state.scrollPosition} />
+      <Sections sections={state.sections} />
     </div>
   );
 }
-
-const getDimensions = (ele) => {
-  const { height } = ele.getBoundingClientRect();
-  const offsetTop = ele.offsetTop;
-  const offsetBottom = offsetTop + height;
-
-  return {
-    height,
-    offsetTop,
-    offsetBottom,
-  };
-};
 
 export default App;
