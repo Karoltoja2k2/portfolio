@@ -24,34 +24,34 @@ export const data = [
         projects:[
             {
                 title: "GoGift",
-                category: "c#",
+                categories: ["C#", "asp.net"],
                 mainImg: gogif_main,
             },
             {
                 title: "Chmura dokumentów",
-                category: "c#",
+                categories: ["C#", "asp.net"],
                 mainImg: chmura_main,
             },
             {
                 title: "Windows10",
-                category: "JS",
+                categories: ["JS", "TS", "React.js"],
                 mainImg: windows10_main,
                 repo: "https://github.com/Karoltoja2k2/Saper-cSharp",
             },
             {
                 title: "Pathfinding",
-                category: "c#",
+                categories: ["C#", "WPF"],
                 mainImg: pathfinding_main
             },
             {
                 title: "Saper",
-                category: "JS",
+                categories: ["JS", "TS"],
                 mainImg: saper_main,
                 repo: "https://github.com/Karoltoja2k2/Saper-cSharp",
             },
             {
                 title: "Sortowanie",
-                category: "c#",
+                categories: ["C#", "WPF"],
                 mainImg: sort_main,
                 repo: "https://github.com/Karoltoja2k2/Saper-cSharp",
             },

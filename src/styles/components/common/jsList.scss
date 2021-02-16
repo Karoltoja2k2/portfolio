@@ -1,0 +1,10 @@
+.jsList {
+  color: white;
+  font-weight: 400;
+  label {
+    cursor: pointer;
+  }
+  label:hover {
+    color: $theme-main-color;
+  }
+}
