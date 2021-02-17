@@ -33,52 +33,52 @@
 
 .grid__item {
   position: relative;
-  cursor: pointer;
   min-width: 326px;
   max-width: 450px;
   color: white;
   overflow: hidden;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+
   img {
     width: 100%;
+    border-radius: 5px;
   }
-
   .img__over {
-    top: 0;
-    bottom: 0;
+    height: 100%;
     width: 100%;
-
-    background-color: rgba(0, 0, 0, 0.6);
-
+    background-color: rgba(0, 0, 0, 0);
+    transition: background-color 0.2s;
     position: absolute;
     visibility: hidden;
-
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-around;
     align-items: center;
 
-    .title {
+    .over__title {
       position: absolute;
-      bottom: 5px;
       left: 0px;
-      color: $theme-main-color;
+      top: 5px;
       font-size: 24px;
       font-weight: 400;
-    }
-
-    i {
     }
   }
 }
 
 .grid__item:hover {
-  .img__over {
-    visibility: visible;
-  }
+  color: $theme-secondary-color;
   img {
-    // filter: blur(2px);
-    filter: sepia(50%);
+    filter: blur(2px);
+  }
+  .img__over {
+    background-color: rgba(0, 0, 0, 0.6);
+    visibility: visible;
   }
 }
 

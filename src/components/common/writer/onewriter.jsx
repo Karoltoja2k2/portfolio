@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import WriterBase from "./writerBase";
+import CalculateDelay from "./calculateDelay";
 
 function OneWriter({ word, reset, maxDelay }) {
   const [state, setState] = useState({
@@ -27,7 +28,8 @@ function OneWriter({ word, reset, maxDelay }) {
       run = false;
     }
 
-    let delay = Math.max(maxDelay, parseInt(Math.random() * 100));
+    let delay = CalculateDelay(15, maxDelay);
+
     let modifier = 1;
     const timeout2 = setTimeout(() => {
       setState({ subIndex: state.subIndex + modifier });

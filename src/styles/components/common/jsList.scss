@@ -1,10 +1,13 @@
 .jsList {
-  color: white;
-  font-weight: 400;
-  label {
+  .jsList__label {
     cursor: pointer;
   }
-  label:hover {
-    color: $theme-main-color;
+
+  .jsList__label:hover {
+    color: $theme-secondary-color;
+  }
+
+  .jsList__label--active {
+    color: $theme-main-color !important;
   }
 }

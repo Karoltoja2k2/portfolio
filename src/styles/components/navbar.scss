@@ -25,6 +25,7 @@
   justify-content: flex-start;
   align-items: center;
   color: white;
+  transition: color 0.3s;
   cursor: pointer;
 
   .item__button {
@@ -54,11 +55,12 @@
 }
 
 .navbar__item:hover {
+  color: $theme-secondary-color;
   .item__description {
     display: flex;
   }
 }
 
 .navbar__item--active {
-  color: $theme-main-color;
+  color: $theme-main-color !important;
 }

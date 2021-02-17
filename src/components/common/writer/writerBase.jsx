@@ -9,7 +9,7 @@ function WriterBase({ word, subIndex }) {
     }, 500);
     return () => clearTimeout(timeout2);
   }, [blink]);
-  return <>{`>  ${word.substring(0, subIndex)}${blink ? "|" : " "}`}</>;
+  return <label>{`>  ${word.substring(0, subIndex)}${blink ? "|" : " "}`}</label>;
 }
 
 export default WriterBase;

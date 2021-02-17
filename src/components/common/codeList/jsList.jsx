@@ -4,11 +4,14 @@ function JsList({ name, items, onClick }) {
   let itemsLen = items.length;
   return (
     <p className="jsList">
-      {`> ${name} = [`}
+      <label>{`> ${name} = [`}</label>
       {items.map((item, index) => (
-        <label key={index} onClick={() => onClick(item)}>
-          {`${item}` + (index != itemsLen - 1 ? `,\u00A0` : "")}
-        </label>
+        <>
+          <label className={`jsList__label ${item.active ? "jsList__label--active" : ""}`} key={index} onClick={() => onClick(item)}>
+            {item.value}
+          </label>
+          {index != itemsLen - 1 && <label>{`,\u00A0`}</label>}
+        </>
       ))}
       {`]`}
     </p>

@@ -10,6 +10,7 @@ import img from "../images/gg1.png";
 import img2 from "../images/pathfinding1.png";
 import { Vector3 } from "three";
 import JsList from "../components/common/codeList/jsList";
+import MultiLineWriter from "../components/common/writer/multiLineWriter";
 
 let lang = data.find((x) => x.language === "PL");
 let cat = ["All"];
@@ -35,30 +36,25 @@ function Projects({ name, isActive }) {
     <div className="projects section__container--thin">
       <SectionTitle name={name} isActive={isActive} />
       <div className="projects__filter">
-        {/* <p>
-          {`categories = [${categories.join(", ")}]`}
-        </p> */}
         <JsList
           name="filters"
-          items={categories}
+          items={categories.map((x) => {
+            return { value: x, active: false };
+          })}
           onClick={(e) => {
             console.log(e);
           }}
         ></JsList>
       </div>
-      <p style={{ color: "white" }}>{"> ls *_details.html"}</p>
+      <p style={{ color: "white" }}>{"> dir *_details"}</p>
       <div className="projects__grid">
         {state.map((x) => (
-          <div
-            key={x.id}
-            className="grid__item"
-            onMouseEnter={() => Hover(x.id)}
-            onMouseLeave={() => Hover(100)}
-          >
+          <div key={x.id} className="grid__item" onMouseEnter={() => Hover(x.id)} onMouseLeave={() => Hover(100)}>
             <img src={x.mainImg} />
-            <div className="img__over">
-              <div className="title">
-                <OneWriter word={x.title} reset={x.hovered} maxDelay={15} />
+            <div className="img__over" onClick={() => console.log("object")}>
+              <div className="over__title">
+                {/* <OneWriter word={x.title} reset={x.hovered} maxDelay={15} /> */}
+                <MultiLineWriter words={[x.title, `cd ${x.shortTitle}_details`]} reset={x.hovered} maxDelay={20} />
               </div>
             </div>
           </div>
